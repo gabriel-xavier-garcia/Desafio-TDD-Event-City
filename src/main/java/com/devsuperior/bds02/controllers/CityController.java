@@ -5,7 +5,9 @@ import com.devsuperior.bds02.services.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -30,6 +32,9 @@ public class CityController {
     @PostMapping
     public ResponseEntity<CityDTO> insert(@RequestBody CityDTO dto){
         CityDTO result = service.insert(dto);
-        return ResponseEntity.ok().body(result);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}").buildAndExpand(result.getId()).toUri();
+
+        return ResponseEntity.created(uri).body(result);
     }
 }

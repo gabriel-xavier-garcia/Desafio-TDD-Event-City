@@ -1,21 +1,21 @@
 package com.devsuperior.bds02.dto;
 
-import java.time.LocalDate;
+import java.time.Instant;
 
 public class CustomError {
-    private LocalDate timestamp;
+    private Instant timestamp;
     private int status;
     private String error;
     private String path;
 
-    public CustomError(LocalDate timestamp, int status, String error, String path) {
+    public CustomError(Instant timestamp, int status, String error, String path) {
         this.timestamp = timestamp;
         this.status = status;
         this.error = error;
         this.path = path;
     }
 
-    public LocalDate getTimestamp() {
+    public Instant getTimestamp() {
         return timestamp;
     }
 
